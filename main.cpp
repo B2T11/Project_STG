@@ -1,19 +1,22 @@
-//Control
-//Move:W A S D
-//Shoot:Space
-//OC:V
-//Lockon:Mouse
-//Missile:LeftClick
-
-
 #include <Novice.h>
 #include<ctime>
 #include<cmath>
 #include<vector>
+#include "Vector2.h"
 #include "BezierCurves.h"
+#include "HitCheck.h"
+#include "Animetion.h"
+#include "Player.h"
+#include "Enemy.h"
+#include "HUD.h"
+#include "Item.h"
+#include "Bullet.h"
+#include "Missile.h"
+#include "Object.h"
 #include "PlayerControl.h"
-#include"HitCheck.h"
-const char kWindowTitle[] = "GC1B_16_リ_ブンタツ";
+#include "BulletShootControl.h"
+#include "WPNOC.h"
+const char kWindowTitle[] = "Orion";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
@@ -116,7 +119,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	player.isOC = false;
 	player.isAlive = true;
 	bool isMislShot = false;
-	lockon_t MislLockOn = {};
+	vector2_t MislLockOn = {};
 	
 #pragma region enemy
 	std::vector<enemy_t> enemies;
@@ -511,10 +514,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 	
 	float tSpeed = 0.03f;
-	vector2_t P{};
 	std::vector<missile_t>missiles;
 	missile_t missile = {};
-	missile.pos = { P.x,P.y };
 	/*mis.dir = {};
 	mis.target = {};*/
 	missile.t = 0.0f;
@@ -789,7 +790,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				}
 				
 			    mis.dir = BezierPDirection(mis.pos, p0, p1, mis.target, mis.t, tSpeed);
-                mis.pos = Set3PointBezier(mis.pos, p0, p1, mis.target, mis.t, tSpeed);
+                mis.pos = Set3PointBezier(p0, p1, mis.target, mis.t, tSpeed);
 				if (!enemies[targetEnemyIndex].isAlive&&mis.pos.x==mis.target.x&& mis.pos.y == mis.target.y) {
 					mis.isShot = false;
 					isMislShot = false;
@@ -1314,8 +1315,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 			if (targetEnemyIndex != -1 && enemies[targetEnemyIndex].isAlive) {
 				
-				MislLockOn.pos.x = enemies[targetEnemyIndex].pos.x;
-				MislLockOn.pos.y = enemies[targetEnemyIndex].pos.y;
+				MislLockOn.x = enemies[targetEnemyIndex].pos.x;
+				MislLockOn.y = enemies[targetEnemyIndex].pos.y;
 				
 			}
 			
@@ -1375,7 +1376,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite((int)ene.pos.x - 60 / 2, (int)ene.pos.y - 78 / 2, enemy1TH, 1, 1, ene.angle, ene.color);
 			}
 			if (targetEnemyIndex != -1 && enemies[targetEnemyIndex].isAlive) {
-				Novice::DrawSprite((int)MislLockOn.pos.x - 22, (int)MislLockOn.pos.y - 26, lockonTH, 1, 1, 0.0f, WHITE);
+				Novice::DrawSprite((int)MislLockOn.x - 22, (int)MislLockOn.y - 26, lockonTH, 1, 1, 0.0f, WHITE);
 			}
 		}
 		

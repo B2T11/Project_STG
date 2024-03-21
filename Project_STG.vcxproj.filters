@@ -50,6 +50,33 @@
     <ClCompile Include="HitCheck.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="WPNOC.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Animetion.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -124,9 +151,17 @@
       <Filter>KamataEngine\Include</Filter>
     </ClInclude>
     <ClInclude Include="BezierCurves.h" />
-    <ClInclude Include="Struct.h" />
     <ClInclude Include="PlayerControl.h" />
     <ClInclude Include="BulletShootControl.h" />
     <ClInclude Include="HitCheck.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Missile.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="WPNOC.h" />
+    <ClInclude Include="HUD.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Animetion.h" />
+    <ClInclude Include="Object.h" />
   </ItemGroup>
 </Project>
