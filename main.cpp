@@ -1,7 +1,7 @@
 #include <Novice.h>
-#include<ctime>
-#include<cmath>
-#include<vector>
+#include <ctime>
+#include <cmath>
+#include <vector>
 #include "Vector2.h"
 #include "BezierCurves.h"
 #include "HitCheck.h"
@@ -119,7 +119,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	player.isOC = false;
 	player.isAlive = true;
 	bool isMislShot = false;
-	vector2_t MislLockOn = {};
+	vector2_t mislLockOn = {};
 	
 #pragma region enemy
 	std::vector<enemy_t> enemies;
@@ -1315,8 +1315,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 			}
 			if (targetEnemyIndex != -1 && enemies[targetEnemyIndex].isAlive) {
 				
-				MislLockOn.x = enemies[targetEnemyIndex].pos.x;
-				MislLockOn.y = enemies[targetEnemyIndex].pos.y;
+				mislLockOn.x = enemies[targetEnemyIndex].pos.x;
+				mislLockOn.y = enemies[targetEnemyIndex].pos.y;
 				
 			}
 			
@@ -1376,7 +1376,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 				Novice::DrawSprite((int)ene.pos.x - 60 / 2, (int)ene.pos.y - 78 / 2, enemy1TH, 1, 1, ene.angle, ene.color);
 			}
 			if (targetEnemyIndex != -1 && enemies[targetEnemyIndex].isAlive) {
-				Novice::DrawSprite((int)MislLockOn.x - 22, (int)MislLockOn.y - 26, lockonTH, 1, 1, 0.0f, WHITE);
+				Novice::DrawSprite((int)mislLockOn.x - 22, (int)mislLockOn.y - 26, lockonTH, 1, 1, 0.0f, WHITE);
 			}
 		}
 		

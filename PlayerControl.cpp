@@ -6,7 +6,7 @@
 float inclineLength;
 
 
-vector2_t MovePlayer(char keys[], player_t& player,const HUD_t& THRHEAT) {
+vector2_t MovePlayer(char keys[], player_t& player,const HUD_t& tHRHEAT) {
 	player.speed = { 0.0f,0.0f };
 	vector2_t length = { 5.0f,5.0f };
 	
@@ -15,7 +15,7 @@ vector2_t MovePlayer(char keys[], player_t& player,const HUD_t& THRHEAT) {
 
 	if (keys[DIK_W]) {
 		player.speed.y = -5.0f;
-		if (THRHEAT.isFlash) {
+		if (tHRHEAT.isFlash) {
 			player.speed.y = -3.0f;
 		}
 	}
@@ -31,14 +31,14 @@ vector2_t MovePlayer(char keys[], player_t& player,const HUD_t& THRHEAT) {
 		
 	}
 	if (keys[DIK_W] && keys[DIK_A]) {
-		if (THRHEAT.isFlash) {
+		if (tHRHEAT.isFlash) {
 			length = { 5.0f,3.0f };
 		}
 		player.speed.x = -1 * (length.x / inclineLength) * length.x;
 		player.speed.y = -1 * (length.y / inclineLength) * length.y;
 	}
 	if (keys[DIK_W] && keys[DIK_D]) {
-		if (THRHEAT.isFlash) {
+		if (tHRHEAT.isFlash) {
 			length = { 5.0f,3.0f };
 		}
 		player.speed.x = (length.x / inclineLength) * length.x;
