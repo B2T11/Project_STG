@@ -41,9 +41,6 @@
     <ClCompile Include="BezierCurves.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerControl.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
     <ClCompile Include="BulletShootControl.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
@@ -151,7 +148,6 @@
       <Filter>KamataEngine\Include</Filter>
     </ClInclude>
     <ClInclude Include="BezierCurves.h" />
-    <ClInclude Include="PlayerControl.h" />
     <ClInclude Include="BulletShootControl.h" />
     <ClInclude Include="HitCheck.h" />
     <ClInclude Include="Player.h" />

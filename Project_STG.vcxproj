@@ -126,7 +126,6 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerControl.cpp" />
     <ClCompile Include="BulletShootControl.cpp" />
     <ClCompile Include="WPNOC.cpp" />
   </ItemGroup>
@@ -168,7 +167,6 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\DirectXGame\scene\GameScene.h" />
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
     <ClInclude Include="HitCheck.h" />
-    <ClInclude Include="PlayerControl.h" />
     <ClInclude Include="BulletShootControl.h" />
     <ClInclude Include="WPNOC.h" />
   </ItemGroup>
