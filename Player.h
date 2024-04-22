@@ -2,6 +2,7 @@
 #include<cstdint>
 #include"Vector2.h"
 #include"HUD.h"
+#include"Novice.h"
 class Player
 {
 private:
@@ -14,9 +15,10 @@ private:
 	float       hitboxRadius_;
 	bool        isAlive_;
 	bool        isOC_;
+	int         textureHandle_;
 public:
-	Player();
-	void Initalize(vector2_t pos, int8_t hp, int8_t weaponRate, int8_t weaponLV, bool isAlive, bool isOC);
+	Player(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, float drawPosX, float hitboxRadius, bool isAlive, bool isOC, int textureHandle);
+	void Initalize(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, bool isAlive, bool isOC);
 	vector2_t GetPos() { return pos_; };
 	vector2_t GetSpeed() { return speed_; };
 	int8_t GetHP() { return hp_; };
@@ -35,8 +37,8 @@ public:
 	void SetIsAlive(bool isAlive);
 	void SetIsOC(bool isOC);
 	void Move(char keys[],const HUD_t& tHRHEAT);
-	void Draw();
-	void OnCollision();
+	void OnCollision(const int8_t& damage);
+    void Draw();
 };
 typedef struct player_s {
 	vector2_t   pos;
