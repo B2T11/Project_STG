@@ -15,6 +15,9 @@
 #include "Object.h"
 #include "BulletShootControl.h"
 #include "WPNOC.h"
+
+using namespace std;
+
 const char kWindowTitle[] = "Orion";
 
 // Windowsアプリでのエントリーポイント(main関数)
@@ -37,14 +40,30 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int missileTH = Novice::LoadTexture("./RS/missile1-Sheet.png");//(84x42)
 	int lockonTH = Novice::LoadTexture("./RS/HUD/LockOn.png");
 	//=============Number=======================================
-    int y24NumTH[10] = { Novice::LoadTexture("./RS/HUD/Number/Y24Num_0.png"),Novice::LoadTexture("./RS/HUD/Number/Y24Num_1.png"),Novice::LoadTexture("./RS/HUD/Number/Y24Num_2.png"),
-	Novice::LoadTexture("./RS/HUD/Number/Y24Num_3.png"), Novice::LoadTexture("./RS/HUD/Number/Y24Num_4.png"), Novice::LoadTexture("./RS/HUD/Number/Y24Num_5.png"),
-	Novice::LoadTexture("./RS/HUD/Number/Y24Num_6.png"), Novice::LoadTexture("./RS/HUD/Number/Y24Num_7.png"), Novice::LoadTexture("./RS/HUD/Number/Y24Num_8.png"),
-	Novice::LoadTexture("./RS/HUD/Number/Y24Num_9.png") };
-	int y36NumTH[10] = { Novice::LoadTexture("./RS/HUD/Number/Y36Num_0.png"),Novice::LoadTexture("./RS/HUD/Number/Y36Num_1.png"),Novice::LoadTexture("./RS/HUD/Number/Y36Num_2.png"),
-	Novice::LoadTexture("./RS/HUD/Number/Y36Num_3.png"), Novice::LoadTexture("./RS/HUD/Number/Y36Num_4.png"), Novice::LoadTexture("./RS/HUD/Number/Y36Num_5.png"),
-	Novice::LoadTexture("./RS/HUD/Number/Y36Num_6.png"), Novice::LoadTexture("./RS/HUD/Number/Y36Num_7.png"), Novice::LoadTexture("./RS/HUD/Number/Y36Num_8.png"),
-	Novice::LoadTexture("./RS/HUD/Number/Y36Num_9.png"), };
+    int y24NumTH[10] = {
+		Novice::LoadTexture("./RS/HUD/Number/Y24Num_0.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y24Num_1.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y24Num_2.png"),
+	    Novice::LoadTexture("./RS/HUD/Number/Y24Num_3.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y24Num_4.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y24Num_5.png"),
+	    Novice::LoadTexture("./RS/HUD/Number/Y24Num_6.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y24Num_7.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y24Num_8.png"),
+	    Novice::LoadTexture("./RS/HUD/Number/Y24Num_9.png")
+	};
+	int y36NumTH[10] = {
+		Novice::LoadTexture("./RS/HUD/Number/Y36Num_0.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y36Num_1.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y36Num_2.png"),
+	    Novice::LoadTexture("./RS/HUD/Number/Y36Num_3.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y36Num_4.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y36Num_5.png"),
+	    Novice::LoadTexture("./RS/HUD/Number/Y36Num_6.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y36Num_7.png"),
+		Novice::LoadTexture("./RS/HUD/Number/Y36Num_8.png"),
+	    Novice::LoadTexture("./RS/HUD/Number/Y36Num_9.png")
+	};
 	//=====LeftHUD=============
 	int leftHUD_TH = Novice::LoadTexture("./RS/HUD/HUD_Left.png");
 	int radarEnemyHUD_TH = Novice::LoadTexture("./RS/HUD/HUD_Radar_Enemy.png");//21x21
@@ -88,14 +107,14 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int itemTH = Novice::LoadTexture("./RS/Item.png");
 	int playerFlameAni[9] = {
 		Novice::LoadTexture("./RS/PlayerFlameAnimetion/stop.png"),
-		 Novice::LoadTexture("./RS/PlayerFlameAnimetion/up.png"),
+		Novice::LoadTexture("./RS/PlayerFlameAnimetion/up.png"),
 		Novice::LoadTexture("./RS/PlayerFlameAnimetion/down.png"),
 		Novice::LoadTexture("./RS/PlayerFlameAnimetion/left.png"),
-		 Novice::LoadTexture("./RS/PlayerFlameAnimetion/right.png"),
+		Novice::LoadTexture("./RS/PlayerFlameAnimetion/right.png"),
 		Novice::LoadTexture("./RS/PlayerFlameAnimetion/leftup.png"),
-		 Novice::LoadTexture("./RS/PlayerFlameAnimetion/leftdown.png"),
+		Novice::LoadTexture("./RS/PlayerFlameAnimetion/leftdown.png"),
 		Novice::LoadTexture("./RS/PlayerFlameAnimetion/rightup.png"),
-		 Novice::LoadTexture("./RS/PlayerFlameAnimetion/rightdown.png"),
+		Novice::LoadTexture("./RS/PlayerFlameAnimetion/rightdown.png"),
 	};
 	int playerFlameAniNum = 0;
 	animetion_t playerFlame = {};
@@ -123,7 +142,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	vector2_t mislLockOn = {};
 	
 #pragma region enemy
-	std::vector<enemy_t> enemies;
+	vector<enemy_t> enemies;
 	enemy_t enemy = {};
 	enemy.pos = { 650,-740};
 	enemy.speed = {0.0f,2.0f};
@@ -134,16 +153,16 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	enemy.rate = 100;
 	enemy.shotTimer = enemy.rate;
 	enemy.color = WHITE;
-	int enemyTimer = 60;
+	int enemySpawnTimer = 60;
 	//========================================
-	std::vector<bullet_t>enemyBullets;
+	vector<bullet_t>enemyBullets;
 	bullet_t enemyBullet = {};
 	enemyBullet.speed = { 0.0f,8.0f };
 	enemyBullet.damage = 5;
 	enemyBullet.hitboxRadius = 8.0f;
 	enemyBullet.isShot = true;
 	//===================================================
-	std::vector<enemy_t> elites;
+	vector<enemy_t> elites;
 	enemy_t elite = {};
 	elite.pos = {};
 	elite.speed = { 0.0f,3.0f };
@@ -164,7 +183,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	//elite.kRightBottomX = elite.spriteWidth / 2.0f;
 	//elite.kRightBottomY = elite.spriteHeight / 2.0f;
 	//=============================================
-	std::vector<bullet_t>eliteBullets;
+	vector<bullet_t>eliteBullets;
 	bullet_t eliteBullet = {};
 	eliteBullet.speed = { 0.0f,10.0f };
 	eliteBullet.damage = 6;
@@ -178,7 +197,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	vector2_t p1 = { p0.x-200.0f,p0.y-300.0f };
 	/*vector2_t P2 = { enemy.Pos.x,enemy.Pos.y };*/
 #pragma region bullet
-	std::vector<bullet_t> bullets;
+	vector<bullet_t> bullets;
 	bullet_t bulletLeft1 = {};
 	bulletLeft1.pos = {};
 	bulletLeft1.spacing = { 10.0f,0.0f };
@@ -257,7 +276,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	/*int WPNOC_Timer_3 = 0;*/
 #pragma region HUD
     vector2_t radarOriginal = { 178.5f,901.5f };
-	std::vector<HUD_t> radarEnemyHUDs;
+	vector<HUD_t> radarEnemyHUDs;
 	HUD_t radarEnemyHUD = {};
     radarEnemyHUD.pos = {};
 	radarEnemyHUD.color = 0xFFFFFFFF;
@@ -515,7 +534,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma endregion
 	
 	float tSpeed = 0.03f;
-	std::vector<missile_t>missiles;
+	vector<missile_t>missiles;
 	missile_t missile = {};
 	/*mis.dir = {};
 	mis.target = {};*/
@@ -528,7 +547,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	missile.spriteHeight = 42;
 	/*int NumSegments = 100;*/
 	
-	std::vector<object_t>objs1;
+	vector<object_t>objs1;
 	object_t object1 = {};
 	object1.radius = 2;
 	vector2_t obj1SpeedMin = {-5,10};
@@ -564,7 +583,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    bullet1DelayTimer++;
 		    bullet2DelayTimer++;
 		    bullet3DelayTimer++;
-		    enemyTimer++;
+		    enemySpawnTimer++;
 		    hUDShakeTimer--;
 		    backGround_1.y++;
 		    backGround_2.y++;
@@ -680,9 +699,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    
 		    
 		    
-#pragma region HUD
+#pragma region HUD Debug
 
-		    if (keys[DIK_TAB] && !preKeys[DIK_1] && keys[DIK_1]) {
+		    /*if (keys[DIK_TAB] && !preKeys[DIK_1] && keys[DIK_1]) {
 		    	pROXWARN_HUD.isFlash = true;
 		    }
 		    if (keys[DIK_TAB] && !preKeys[DIK_2] && keys[DIK_2]) {
@@ -698,7 +717,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    	wPNHEAT_HUD.isFlash = true;
 		    }
 		    if (keys[DIK_TAB] && !preKeys[DIK_6] && keys[DIK_6]) {
-		    	//player.hp-=5;
+				player->SetHP(player->GetHP() - 5);
 		    }
 		    if (keys[DIK_TAB] && !preKeys[DIK_7] && keys[DIK_7]) {
 		    	tHRHEAT_HUD.isFlash = true;
@@ -720,7 +739,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    }
 		    if (keys[DIK_L] && keys[DIK_3]) {
 		    	player->SetWeaponLV(3);
-		    }
+		    }*/
 #pragma endregion
 		    if (Novice::IsTriggerMouse(0)&&isMislShot==false&& mislRem!=0) {
 		    	if (targetEnemyIndex != -1 && enemies[targetEnemyIndex].isAlive) {
@@ -749,7 +768,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    		}
 		    		upgradeItem_1.randSpawn = -1;
 		    	}
-		    	Novice::DrawSprite((int)upgradeItem_1.pos.x, (int)upgradeItem_1.pos.y, itemTH, 1, 1, 0, WHITE);
 		    }
 		    if (timer >= 5000 && timer <= 7000&& upgradeItem_2.randSpawn!=-1) {
 		    	upgradeItem_2.randSpawn = (rand() % 350 + 1);
@@ -769,7 +787,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    		}
 		    		upgradeItem_2.randSpawn = -1;
 		    	}
-		    	Novice::DrawSprite((int)upgradeItem_2.pos.x, (int)upgradeItem_2.pos.y, itemTH, 1, 1, 0, WHITE);
 		    }
 		    //================Shack==========================================================
 		    /*if (!preKeys[DIK_RETURN] && keys[DIK_RETURN]) {
@@ -810,20 +827,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    			isMislShot = false;
 		    		}
 		    	   
-		        for (auto& sEne : enemies) {
-		    		if (sEne.isAlive) {
-                        if (pow((mis.pos.x - sEne.pos.x), 2) + pow((mis.pos.y - sEne.pos.y), 2) <= pow((mis.hitboxRadius + sEne.hitboxRadius), 2)) {
-		    				sEne.hp -= 15;
-		    	            mis.isShot = false;
+		        for (auto& ene : enemies) {
+		    		if (ene.isAlive) {
+						
+                        if (pow((mis.pos.x - ene.pos.x), 2) + pow((mis.pos.y - ene.pos.y), 2) <= pow((mis.hitboxRadius + ene.hitboxRadius), 2)) {
+		    				ene.hp -= 15;
+							mis.isShot = false;
 		    				isMislShot = false;
 		                }
 		    		}
                     
 		    	}
                     mis.angle = atan2f(mis.dir.y, mis.dir.x) - 80.0f;
-		    		if (mis.pos.y < p0.y - 5.0f) {
-		    			Novice::DrawSpriteRect((int)mis.pos.x - 21 / 2, (int)mis.pos.y - 42 / 2, 0, 0, 21, 42, missileTH, 1.0f / 4.0f, 1, mis.angle, WHITE);
-		    		}
 		    	    
 		    
 		    	}
@@ -1257,6 +1272,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    	/*if (bul.isShot == false) {
 		    		bullets.erase(bullets.begin());
 		    	}*/
+
 		    	if (bul.isShot) {
 		    		bul.pos.x += bul.speed.x;
 		    		bul.pos.y -= bul.speed.y;
@@ -1266,9 +1282,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    			
 		    		}
 		    	    for (auto& ene : enemies) {
-		    		     bul.isHit = HitCheck(bul, ene);
+						
+		    		    bul.isHit = HitCheck(bul, ene);
                         if (bul.isHit) {
 		    				ene.hp -= bul.damage;
+							ene.colorChangeTimer = 10;
 		    				object1.pos.x = bul.pos.x;
 		    				object1.pos.y = bul.pos.y;
 		    				for (int i = 0; i < 5; i++) {
@@ -1298,12 +1316,18 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    				bul.isShot = false;
 		    			}
 		    		}
-		    	    Novice::DrawSprite((int)bul.pos.x - bul.spriteWidth / 2, (int)bul.pos.y - bul.spriteHeight / 3, playerBullet1TH, 1.0f, 1.0f, bul.angle, WHITE);
 		    	}
-		    	
-		    		
-		    	
-		    	
+				for (auto& ene : enemies) {
+					ene.colorChangeTimer--;
+					if (ene.colorChangeTimer<=0) {
+						ene.colorChangeTimer = 0;
+						ene.color = WHITE;
+					}
+					else {
+						ene.color = 0xFF770EFF;
+					}
+				}
+
 		    }
 		    
 		    
@@ -1354,10 +1378,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    	}
 		    }
 		    
-            if (enemyTimer > 90) {
+            if (enemySpawnTimer > 90) {
 		    	enemy.pos.x = static_cast<float>(rand() % 1145 + 360);
 		    	enemies.push_back(enemy);
-		    	enemyTimer = 0;
+		    	enemySpawnTimer = 0;
 		    }
 		    
 		    
@@ -1380,19 +1404,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    	}
 		    }
 		    
-		    for (auto& enemyBul : enemyBullets) {
-		    	if (enemyBul.isShot) {
-		    		Novice::DrawSprite((int)enemyBul.pos.x-15/2, (int)enemyBul.pos.y-30/2, enemyBulletTH, 1, 1, enemyBul.angle, WHITE);
-		    	}
-		    }
-		    for (auto& ene : enemies) {
-		    	if (ene.isAlive) {
-		    		Novice::DrawSprite((int)ene.pos.x - 60 / 2, (int)ene.pos.y - 78 / 2, enemy1TH, 1, 1, ene.angle, ene.color);
-		    	}
-		    	if (targetEnemyIndex != -1 && enemies[targetEnemyIndex].isAlive) {
-		    		Novice::DrawSprite((int)mislLockOn.x - 22, (int)mislLockOn.y - 26, lockonTH, 1, 1, 0.0f, WHITE);
-		    	}
-		    }
 		    
 		    
 		    //=======================Elite====================================================
@@ -1518,7 +1529,44 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		    	}
 		    }
 		    
-		    
+
+			//===========================================================================================
+			if (upgradeItem_1.isSpawn) {
+				Novice::DrawSprite((int)upgradeItem_1.pos.x, (int)upgradeItem_1.pos.y, itemTH, 1, 1, 0, WHITE);
+			}
+			if (upgradeItem_2.isSpawn) {
+				Novice::DrawSprite((int)upgradeItem_2.pos.x, (int)upgradeItem_2.pos.y, itemTH, 1, 1, 0, WHITE);
+			}
+
+
+			for (auto& mis : missiles) {
+                if (mis.isShot) {
+					if (mis.pos.y < p0.y - 5.0f) {
+						Novice::DrawSpriteRect((int)mis.pos.x - 21 / 2, (int)mis.pos.y - 42 / 2, 0, 0, 21, 42, missileTH, 1.0f / 4.0f, 1, mis.angle, WHITE);
+					}
+				}
+			}
+
+			for (auto& bul : bullets) {
+				if (bul.isShot) {
+		    	    Novice::DrawSprite((int)bul.pos.x - bul.spriteWidth / 2, (int)bul.pos.y - bul.spriteHeight / 3, playerBullet1TH, 1.0f, 1.0f, bul.angle, WHITE);
+				}
+			}
+			//==========================================================================================================================
+
+		    for (auto& enemyBul : enemyBullets) {
+		    	if (enemyBul.isShot) {
+		    		Novice::DrawSprite((int)enemyBul.pos.x-15/2, (int)enemyBul.pos.y-30/2, enemyBulletTH, 1, 1, enemyBul.angle, WHITE);
+		    	}
+		    }
+		    for (auto& ene : enemies) {
+		    	if (ene.isAlive) {
+		    		Novice::DrawSprite((int)ene.pos.x - 60 / 2, (int)ene.pos.y - 78 / 2, enemy1TH, 1, 1, ene.angle, ene.color);
+		    	}
+		    	if (targetEnemyIndex != -1 && enemies[targetEnemyIndex].isAlive) {
+		    		Novice::DrawSprite((int)mislLockOn.x - 22, (int)mislLockOn.y - 26, lockonTH, 1, 1, 0.0f, WHITE);
+		    	}
+		    }
 		    
 		    for (auto& eliteBul : eliteBullets) {
 		    	if (eliteBul.isShot) {
@@ -1547,17 +1595,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 #pragma region Radar
 		    for (auto& rEHUD : radarEnemyHUDs) {
 		    
-		    
-		    	/*rEHUD.color-=rEHUD.flashSpeed;
-		    	if (rEHUD.color <= 0xFFFFFF0A) {
-		    		rEHUD.flashSpeed *= -1;
-		    	}
-		    	if (rEHUD.color >= 0xFFFFFFFF) {
-		    		rEHUD.flashSpeed *= -1;
-		    	}
-		    	if (rEHUD.color > 0xFFFFFFFF) {
-		    		rEHUD.color = 0xFFFFFFFF;
-		    	}*/
 		    	for (auto& ene : enemies) {
 		    		if (ene.isAlive) {
 		    			rEHUD.pos = { radarOriginal.x + (ene.pos.x - player->GetPos().x) / 5,radarOriginal.y + (ene.pos.y - player->GetPos().y) / 5};

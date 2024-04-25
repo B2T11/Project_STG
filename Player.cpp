@@ -14,6 +14,9 @@ Player::Player(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int
 	isOC_ = isOC;
 	textureHandle_ = textureHandle;
 }
+Player::~Player() {
+	
+}
 void Player::SetPos(float x, float y) {
 	pos_.x = x;
 	pos_.y = y;

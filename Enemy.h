@@ -14,6 +14,7 @@ typedef struct enemy_s {
 	vector2_t   target;
 	int8_t      moveCase;
 	uint32_t    color;
+	int8_t      colorChangeTimer;
 	int         spriteWidth;
 	int         spriteHeight;
 	//float       kLeftTopX,

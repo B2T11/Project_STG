@@ -18,16 +18,35 @@ private:
 	int         textureHandle_;
 public:
 	Player(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, float drawPosX, float hitboxRadius, bool isAlive, bool isOC, int textureHandle);
+	~Player();
 	void Initalize(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, bool isAlive, bool isOC);
-	vector2_t GetPos() { return pos_; };
-	vector2_t GetSpeed() { return speed_; };
-	int8_t GetHP() { return hp_; };
-	int8_t GetWeaponRate() { return weaponRate_; };
-	int8_t GetWeaponLV() { return weaponLV_; };
-	float GetDrawPosX() { return drawPosX_; };
-	float GetHitboxRadius() { return hitboxRadius_; };
-	bool GetIsAlive() { return isAlive_; };
-	bool GetIsOC() { return isOC_; };
+	vector2_t GetPos() { 
+		return pos_;
+	};
+	vector2_t GetSpeed() { 
+		return speed_;
+	};
+	int8_t GetHP() { 
+		return hp_;
+	};
+	int8_t GetWeaponRate() {
+		return weaponRate_;
+	};
+	int8_t GetWeaponLV() {
+		return weaponLV_;
+	};
+	float GetDrawPosX() {
+		return drawPosX_;
+	};
+	float GetHitboxRadius() {
+		return hitboxRadius_;
+	};
+	bool GetIsAlive() {
+		return isAlive_;
+	};
+	bool GetIsOC() {
+		return isOC_;
+	};
 	void SetPos(float x, float y);
 	void SetSpeed(float x, float y);
 	void SetHP(int8_t hp);
@@ -40,14 +59,14 @@ public:
 	void OnCollision(const int8_t& damage);
     void Draw();
 };
-typedef struct player_s {
-	vector2_t   pos;
-	vector2_t   speed;
-    int8_t      hp;
-	int8_t      weaponRate;
-	int8_t      weaponLV;
-	float       drawPosX;
-	float       hitboxRadius;
-	bool        isAlive;
-	bool        isOC;
-}player_t;
+//typedef struct player_s {
+//	vector2_t   pos;
+//	vector2_t   speed;
+//    int8_t      hp;
+//	int8_t      weaponRate;
+//	int8_t      weaponLV;
+//	float       drawPosX;
+//	float       hitboxRadius;
+//	bool        isAlive;
+//	bool        isOC;
+//}player_t;
