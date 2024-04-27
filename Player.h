@@ -19,7 +19,7 @@ private:
 public:
 	Player(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, float drawPosX, float hitboxRadius, bool isAlive, bool isOC, int textureHandle);
 	~Player();
-	void Initalize(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, bool isAlive, bool isOC);
+	void Initalize(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, float drawPosX, bool isAlive, bool isOC);
 	vector2_t GetPos() { 
 		return pos_;
 	};

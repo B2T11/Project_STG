@@ -10,6 +10,6 @@ typedef struct bullet_s {
 	float       angle;
 	bool        isShot;
 	bool        isHit;
-	int         spriteWidth;
-	int         spriteHeight;
+	int8_t      spriteWidth;
+	int8_t      spriteHeight;
 }bullet_t;

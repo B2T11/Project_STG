@@ -10,6 +10,6 @@ typedef struct missile_s {
 	bool        isShot;
 	bool        isHit;
 	float       hitboxRadius;
-	int         spriteWidth;
-	int         spriteHeight;
+	int8_t      spriteWidth;
+	int8_t      spriteHeight;
 }missile_t;

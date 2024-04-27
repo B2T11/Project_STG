@@ -556,6 +556,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	enum scene_t {
 		title,
 		gameplay,
+		gameover,
+		gameclear,
+		instructions,
 	};
 	scene_t scene = title;
 	// ウィンドウの×ボタンが押されるまでループ
@@ -571,6 +574,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		
 		switch (scene) {
 		case title:
+			player->Initalize({ 960.0f,800.0f }, { 0.0f,0.0f }, 30, 10, 1, 78.0f, true, false);
 			if (!preKeys[DIK_SPACE] && keys[DIK_SPACE]) {
 				scene = gameplay;
 			}

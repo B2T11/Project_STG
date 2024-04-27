@@ -43,12 +43,13 @@ void Player::SetIsAlive(bool isAlive) {
 void Player::SetIsOC(bool isOC) {
 	isOC_ = isOC;
 }
-void Player::Initalize(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, bool isAlive, bool isOC) {
+void Player::Initalize(vector2_t pos, vector2_t speed, int8_t hp, int8_t weaponRate, int8_t weaponLV, float drawPosX, bool isAlive, bool isOC) {
 	SetPos(pos.x, pos.y);
 	SetSpeed(speed.x, speed.y);
 	SetHP(hp);
 	SetWeaponRate(weaponRate);
 	SetWeaponLV(weaponLV);
+	SetDrawPosX(drawPosX);
 	SetIsAlive(isAlive);
 	SetIsOC(isOC);
 }
